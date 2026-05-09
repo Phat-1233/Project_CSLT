@@ -5,7 +5,7 @@ public class PlayerConllision : MonoBehaviour
     private GameManager gameManager;
     private void Awake()
     {
-        gameManager = FindAnyObjectByType <GameManager>();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,6 +17,16 @@ public class PlayerConllision : MonoBehaviour
         else if (collision.CompareTag("Trap"))
         {
             gameManager.GameOver();
+        }
+        else if (collision.CompareTag("Enemy"))
+        {
+            gameManager.GameOver();
+        }
+        else if (collision.CompareTag("Key"))
+        {
+            Debug.Log("===> DA CHAM VAO KEY ROI NE !!!");
+            Destroy(collision.gameObject);
+            gameManager.GameWin();
         }
     }
 }
