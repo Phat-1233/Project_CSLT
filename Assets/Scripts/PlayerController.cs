@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool isGrounded;
     private Rigidbody2D rb;
+    private GameManager gameManager;
     private void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.IsGameOver()) return;
         HandleMovement();
         HandleJump();
         UpdateAnimation();
